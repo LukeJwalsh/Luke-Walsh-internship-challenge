@@ -54,7 +54,7 @@ Query Parameters:
 - days: history range in days (1, 7, 30)
 
 ### Example Response
-
+```text
 {
   "id": "bitcoin",
   "symbol": "btc",
@@ -67,7 +67,7 @@ Query Parameters:
     ...
   ]
 }
-
+```
 ## Backend Tests
 
 ## Run Tests with Pytest
