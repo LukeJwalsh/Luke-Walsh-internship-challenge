@@ -1,3 +1,5 @@
+# Author: Luke Walsh
+
 # Crypto Dashboard API
 
 A lightweight REST API that accepts a cryptocurrency name or symbol, fetches live and historical data from CoinGecko, and returns summary statistics such as current price, 24h change, volume, and historical prices.
