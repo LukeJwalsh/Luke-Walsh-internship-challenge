@@ -43,6 +43,11 @@ in a new terminal run:
 cd backend-challenge/crypto-dashboard/backend
 uvicorn main:app --reload
 
+### 4. Run the App Locally
+
+In the crypto-dashboard folder run:
+npm run dev
+
 ## Example API Usage
 
 ### Valid Request
