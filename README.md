@@ -16,11 +16,13 @@ A lightweight REST API that accepts a cryptocurrency name or symbol, fetches liv
 
 ## Project Structure
 
+```text
 backend-challenge/
-├── main.py # FastAPI application
+├── main.py             # FastAPI application
 ├── test/
-│ └── test_main.py # Test suite with 3 functional tests
-└── requirements.txt # Dependencies
+│   └── test_main.py    # Test suite with 3 functional tests
+└── requirements.txt    # Dependencies
+```
 
 
 ---
