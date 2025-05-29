@@ -79,10 +79,12 @@ Query Parameters:
 ```
 ## Backend Tests
 
-## Run Tests with Pytest
+### Run Tests with Pytest
 
+```text
 while in the backend folder, run the next line in the terminal:
 pytest
+```
 
 ### Tests include
 
