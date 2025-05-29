@@ -107,5 +107,5 @@ pytest
 - Add a history tab so users can quickly look at the coins their interested in 
 - Add a notification system to alert the user when the price drops or goes beloe a selected price
 
-  ## Note
-  The api limit gets reached very quickly because we're accessing the price history, which causes the server to fail, and if the limit is reached, it will cause the backend   tests to auto fail as well
+## Note
+The api limit gets reached very quickly because we're accessing the price history, which causes the server to fail, and if the limit is reached, it will cause the backend   tests to auto fail as well
