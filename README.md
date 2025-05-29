@@ -31,23 +31,27 @@ backend-challenge/
 
 ### 1. Download the Repository
 
+```text
 cd backend-challenge/crypto-dashboard
-
+```
 ### 2. Install Dependencies
 
 npm install
 
 ### 3. Run the FastAPI Server
 
+```text
 in a new terminal run:
 cd backend-challenge/crypto-dashboard/backend
 uvicorn main:app --reload
+```
 
 ### 4. Run the App Locally
 
+```text
 In the crypto-dashboard folder run:
 npm run dev
-
+```
 ## Example API Usage
 
 ### Valid Request
