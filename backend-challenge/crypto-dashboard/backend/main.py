@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import httpx
 
 app = FastAPI()
@@ -21,12 +22,27 @@ async def get_crypto(query: str, days: int = 7):
         - query: User input (name, symbol, or ID of the crypto)
         - days: Number of days for historical chart (default = 7)
     """
-
     async with httpx.AsyncClient() as client:
-
         # Get full list of supported coins
         coin_list_response = await client.get("https://api.coingecko.com/api/v3/coins/list")
-        coin_list = coin_list_response.json()
+        if coin_list_response.status_code != 200:
+            return JSONResponse(
+                status_code=500,
+                content={"error": f"Failed to fetch coin list: {coin_list_response.text}"}
+            )
+
+        try:
+            coin_list = coin_list_response.json()
+            if not isinstance(coin_list, list):
+                return JSONResponse(
+                    status_code=500,
+                    content={"error": f"Unexpected coin list format: {coin_list}"}
+                )
+        except Exception as e:
+            return JSONResponse(
+                status_code=500,
+                content={"error": f"Failed to parse coin list: {str(e)}"}
+            )
 
         # Find the coin that matches the query (by ID, name, or symbol)
         user_query = query.lower()
@@ -63,12 +79,12 @@ async def get_crypto(query: str, days: int = 7):
         history_response = await client.get(history_url, params=history_params)
         history_data = history_response.json()
 
-        # Handle possible rate limit or API error
-        if "status" in history_data:
-            print("Unexpected response for historical data:", history_data)
-            raise HTTPException(status_code=500, detail="Failed to fetch historical price data")
+        if "status" in history_data and history_data["status"].get("error_code") == 429:
+            raise HTTPException(status_code=429, detail="Rate limit exceeded. Please try again later.")
 
-        # Return structured JSON response to frontend
+        if "prices" not in history_data or coin_id not in coin_data:
+            raise HTTPException(status_code=500, detail="Failed to fetch complete data from CoinGecko.")
+
         return {
             "id": coin_id,
             "symbol": matched_coin["symbol"],

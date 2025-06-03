@@ -40,11 +40,17 @@ cd backend-challenge/crypto-dashboard
 
 npm install
 
-### 3. Run the FastAPI Server
+### 3. Setup the virtual enviroment and Run the FastAPI Server
 
 ```text
 in a new terminal run:
-cd backend-challenge/crypto-dashboard/backend
+cd backend-challenge
+python -m venv .venv
+source .venv/bin/activate  
+or 
+ .venv\Scripts\activate on Windows
+pip install -r requirements.txt
+cd crypto-dashboard/backend
 uvicorn main:app --reload
 ```
 
